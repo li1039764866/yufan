@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!--服务提供方的名称-->
+    <dubbo:application name="admin-provider"/>
+
+    <!--配置注册中心-->
+    <dubbo:registry  address="zookeeper://127.0.0.1:2181" />
+
+    <!--暴露服务的名称和端口号-->
+    <dubbo:protocol name="dubbo" port="20880"/>
+
+    <!--将暴露的service实现交给Bean管理-->
+    <bean id="itemRPCService" class="org.yufan.service.rpc.ItemRPCServiceImpl"/>
+
+    <!--暴露服务的接口-->
+    <dubbo:service  interface="org.yufan.service.rpc.ItemRPCService" ref="itemRPCService"/>
+    <!--延长超时时间-->
+    <!--<dubbo:provider delay="-1" timeout="60000" retries="1"/>-->
+</beans>

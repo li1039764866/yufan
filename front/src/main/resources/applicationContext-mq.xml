@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!--1.配置原工厂-->
+	<bean id="activeMQConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL" value="tcp://127.0.0.1:61616"/>
+		<property name="userName" value="admin"/>
+		<property name="password" value="admin"/>
+	</bean>
+
+	<!--2.配置原厂家的连接池-->
+	<bean id="pooledConnectionFactoryBean" class="org.apache.activemq.pool.PooledConnectionFactoryBean">
+		<!--上面的工厂-->
+		<property name="connectionFactory" ref="activeMQConnectionFactory"/>
+		<!--连接数-->
+		<property name="maxConnections" value="5"/>
+	</bean>
+
+
+	<!--3.配置spring工厂-->
+	<bean id="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+		<!--注入原厂家工厂-->
+		<property name="targetConnectionFactory" ref="pooledConnectionFactoryBean"/>
+	</bean>
+
+
+	<!--配置监听处理器类的代码-->
+	<bean id="customerMessageListener" class="org.yufan.listener.CustomerMessageListener"/>
+
+	<!--监听MQ-->
+    <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+
+		<!--1.连接mq进行监听-->
+		<property name="connectionFactory" ref="connectionFactory"/>
+
+		<!--2.监听的目标-->
+		<property name="destinationName" value="item_cache_id"/>
+
+		<!--3.接收消息-->
+		<property name="messageListener" ref="customerMessageListener"/>
+	</bean>
+
+
+</beans>

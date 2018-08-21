@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="application/javascript" src="/js/jquery-1.2.6.min.js"></script>
+
+    <script type="application/javascript">
+
+        $.ajax({
+            type: "get",
+            url: "http://manage.yufan.com/rest/js/json.jsp",
+            dataType: "jsonp",
+            success: function(msg){
+                alert(msg.abc);
+            }
+        });
+    </script>
+
+</head>
+
+
+
+
+<body>
+
+
+
+
+</body>
+</html>
