@@ -37,7 +37,7 @@ import java.io.IOException;
 @Qualifier("itemServiceImplUseDubbo")
 public class ItemServiceImplUseDubbo implements ItemService {
 
-    @Autowired
+    @Autowired //不能取消这个注释，在运行的时候，Dubbo会连接到这个服务并通过Soring将Bean注入
     private ItemRPCService itemRPCService;
 
     @Autowired

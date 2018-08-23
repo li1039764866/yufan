@@ -16,7 +16,7 @@
     <!--暴露服务的名称和端口号-->
     <dubbo:protocol name="dubbo" port="20880"/>
 
-    <!--将暴露的service实现交给Bean管理-->
+    <!--将暴露的service实现交给Bean管理，用于调用方Bean的注入-->
     <bean id="itemRPCService" class="org.yufan.service.rpc.ItemRPCServiceImpl"/>
 
     <!--暴露服务的接口-->
