@@ -35,7 +35,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    private Logger LOGGER=LoggerFactory.getLogger( UserController.class);
+    private Logger LOGGER=LoggerFactory.getLogger(UserController.class);
 
 
     /**
@@ -112,7 +112,6 @@ public class UserController {
     public String queryUserByToken(@PathVariable("token")  String token) throws MyException, IOException {
         LOGGER.info("当前查询用户信息的token为{}",token);
         User user=userService.queryUserByToken(token);
-        System.out.println("new ModelAndView");
         if(user==null){
             return "redirect:http://www.yufan.com/user/login.html";
         }
@@ -121,7 +120,7 @@ public class UserController {
 
 
     /**
-     *
+     *检查用户名是否存在
      * @param username
      * @return
      * @throws MyException

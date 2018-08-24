@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>羽帆商城后台管理系统</title>
+<title>子曰商城后台管理系统</title>
 <jsp:include page="/commons/common-js.jsp"></jsp:include>
 <style type="text/css">
 .content {
@@ -15,7 +15,7 @@
 <body class="easyui-layout">
 	<div data-options="region:'north',border:false"
 		style="height: 60px; padding: 5px; background: #F3F3F3">
-		<span class="northTitle">羽帆商城后台管理系统</span> <span class="loginInfo">登录用户：admin&nbsp;&nbsp;姓名：管理员&nbsp;&nbsp;角色：系统管理员</span>
+		<span class="northTitle">子曰商城后台管理系统</span> <span class="loginInfo">登录用户：admin&nbsp;&nbsp;姓名：管理员&nbsp;&nbsp;角色：系统管理员</span>
 	</div>
 
 	<div data-options="region:'west',title:'菜单',split:true"
